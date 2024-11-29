@@ -1,0 +1,32 @@
+import naves.*
+import pilotos.*
+import misiones.*
+
+
+describe "test de naves" {
+
+    const nave1 = new VeritechFighter(arma=canion,calidad=3)
+    const nave2 = new AlphaFighter(arma=misiles,calidad=1,modelo="AFC-02")
+    const nave3 = new Cyclone(peso=1,calidad=1)
+
+    const nave4 = new Cyclone(peso=2,calidad=1)
+    const nave5 = new VeritechFighter(arma=canion,calidad=3)
+    const nave6 = new AlphaFighter(arma=misiles,calidad=2,modelo="AFC-02B")
+    const mision1 = new Mision(nombre="misionA",navesAsignadas=#{nave4,nave5,nave6}) 
+    
+  test "valoracion de Veritech Fighter es de 80" {
+    assert.equals(80, nave1.valoracion())
+  }
+
+  test "valoracion de Alpha Fighter es de 117" {
+    assert.equals(117, nave2.valoracion())
+  }
+
+  test "valoracion de Cyclone es especial" {
+    assert.notThat(nave3.esEspecial())
+  }
+
+  test "la valoracion de la mision es de 42" {
+    assert.equals(42, mision1.valoracion())
+  }
+}

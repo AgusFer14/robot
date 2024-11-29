@@ -1,0 +1,31 @@
+import pilotos.*
+import naves.*
+
+describe "test pilotos" {
+
+    const piloto1 = new PilotoSecundario(peso=68.5,navesPilotadas=#{nave1,nave2,nave3})
+    const piloto2 = new PilotoDeAtaque(peso=80,navesPilotadas=#{nave1,nave2,nave3})
+    const piloto3 = new PilotoTactico(peso=50)
+
+    const nave1 = new Cyclone(peso=1,calidad=1)
+    const nave2 = new AlphaFighter(arma=misiles,calidad=1,modelo="AFC-02")
+    const nave3 = new AlphaFighter(arma=misiles,calidad=1,modelo="AFC-02")
+    const nave4 = new AlphaFighter(arma=rifle,calidad=1,modelo="AFC-02")
+
+  test "el piloto secundario no esta sastifecho" {
+    assert.notThat(piloto1.estaSatisfecho())
+  }
+
+  test "el piloto de ataque  esta sastifecho" {
+    assert.notThat(piloto2.estaSatisfecho())
+  }
+
+  test "el piloto tactico le agrada Alpha Fighter" {
+    assert.that(piloto3.leAgrada(nave2))
+  }
+
+  test "el piloto tactico le no agrada Alpha Fighter con rifle" {
+    assert.that(piloto3.leAgrada(nave4))
+  }
+}
+
